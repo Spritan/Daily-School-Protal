@@ -1,6 +1,9 @@
 .container{
+    margin-top: 100px;
     width: calc(100vw - 88px);
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin-left: auto; 
     margin-right: 0;
     .flex{
@@ -10,14 +13,33 @@
     .profileBody{
         flex: 80%;
         background-color: rgb(192, 206, 201);
-        display: flex;
+        
         box-shadow: 13px 13px 26px -14px rgba(0, 0, 0, 0.5);
-        .profileCol1{
-            flex: 30%;
+        
+        .profileBody1{
+            display: flex; 
+            .profileCol1{
+                flex: 30%;
+                .UserImg{
+                    padding: 10px;
+                    max-width: 200px;
+                }
+            }
+            .profileCol2{
+                flex: 70%;
+                .Tags{
+                    font-weight: 500;
+                    .User{
+                        font-weight: 100;
+                    }
+    
+                }
+            }
         }
-        .profileCol2{
-            flex: 70%;
+        .profileBody2{
+            padding: 1em;
         }
+
     }
 
 
