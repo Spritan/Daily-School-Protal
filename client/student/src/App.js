@@ -1,6 +1,7 @@
 import Home from "./pages/home/Home";
 import Attendence from "./pages/attendence/Attendence";
 import Profile from "./pages/profile/Profile";
+import PeerLearning from "./pages/peerLearning/PeerLearning";
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/attendence" element={<Attendence />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/peerLearning" element={<PeerLearning />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,18 +1,14 @@
 import * as React from 'react';
 
 import "./profileBody.scss";
+import Sidebar from '../sidebar/Sidebar';
+
 
 const ProfileBody = () => {
 
   return (
     <>
-      <div className="main">
-        <div className='flex1'></div>
-        <div className="mainbody">
-                  
-        </div>
-        <div className='flex3'></div>
-      </div>
+      {/* <Sidebar /> */}
     </>
   )
 }

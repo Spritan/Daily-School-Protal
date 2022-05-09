@@ -1,18 +1,26 @@
 import Sidebar from "../../components/sidebar/Sidebar";
-import Topbar from "../../components/topbar/Topbar";
+// import ProfileBody from "../../components/profileBody/ProfileBody";
 import "./profile.scss";
 
 const Profile = () => {
     return (
         <>
             <Sidebar />
-                <div className="topbar">
-                   <h1>Student Profile</h1>
-                    <span className='StudentName'>Proyash Paban Sarma Borah</span>
-                    <br />
-                <span className="CourseSemBranch">B.Tech. 4th Semester - ETE</span>
-            
-        </div>
+            <div className="container">
+                <div className="flex"></div>
+                <div className="profileBody">
+                    <div className="profileCol1">
+                        <img src="" alt="" />
+                    </div>
+                    <div className="profileCol2">
+
+                    </div>
+
+                </div>
+                <div className="flex"></div>
+            </div>
+
+
         </>
     )
 }

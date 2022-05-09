@@ -78,7 +78,7 @@ import {
                   </Link>
                 </li>
                 <li className="nav-link">
-                  <Link to="/doctors">
+                  <Link to="/peerLearning">
                     <GroupsOutlined className="sidebar-icon" />
                     <span className="text nav-text">Peer-learning</span>
                   </Link>
