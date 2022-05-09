@@ -53,7 +53,7 @@ import {
                   </Link>
                 </li>
                 <li className="nav-link">
-                  <Link to="/attendence">
+                  <Link to="/profile">
                     <PlaylistAddCheckIcon className="sidebar-icon" />
                     <span className="text nav-text">My Profile</span>
                   </Link>
