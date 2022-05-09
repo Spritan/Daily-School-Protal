@@ -38,6 +38,11 @@
         }
         .profileBody2{
             padding: 1em;
+            display: flex;
+            .profileCol3{
+                flex: 50%;
+            }
+            
         }
 
     }
