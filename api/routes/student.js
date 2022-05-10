@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Student = require("../models/Student");
+const CryptoJS = require('crypto-js')
 
 // ---------------------Login Student ------------------------
 
@@ -25,7 +26,7 @@ router.post("/login", (req, res) => {
 
     const { password, ...others } = user._doc;
 
-    res.status(200).json({ ...others, accessToken });
+    res.status(200).json({ others, accessToken });
   } catch (error) {
     res.status(500).json(error);
   }

@@ -1,0 +1,45 @@
+.main{
+    display: flex;
+    flex-direction: row;
+}
+.flex1{
+    flex: 21.5%;
+}
+.mainbody{
+    flex: 57%;
+}
+.flex3{
+    flex: 21.5%;
+}
+.formsSection{
+    background-color: #e7f3f3;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+    border-radius: .3em;
+}
+select{
+    border-color: azure;
+    border-radius: .3em;
+
+}
+input{
+    // border-color: rgb(255, 255, 255);
+    border-radius: .3em;
+    border-width: 0;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

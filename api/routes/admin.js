@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const CryptoJS = require("crypto-js");
+const CryptoJs = require("crypto-js");
 
 const Professor = require("../models/Professor");
 const Student = require("../models/Student");

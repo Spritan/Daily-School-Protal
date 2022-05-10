@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Parent = require("../models/Parents");
+const CryptoJS = require('crypto-js')
 
 // ------------Login Parent---------------
 
@@ -23,7 +24,7 @@ router.post("/login", (req, res) => {
         expiresIn: "3d",
       });
   
-      const { password, ...others } = user._doc;
+      const { password,others } = user._doc;
   
       res.status(200).json({ ...others, accessToken });
     } catch (error) {
