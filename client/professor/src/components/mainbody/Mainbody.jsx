@@ -73,7 +73,7 @@ const Mainbody = () => {
               </tr>
             </table>
 
-              <input type="checkbox" id='switch' />
+            <button> Submit </button>
 
           </div>
         </div>

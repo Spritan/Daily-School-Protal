@@ -1,0 +1,39 @@
+.dashBody{
+    width: calc(100vw - 88px);
+
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
+
+    .notices{
+        
+        flex: 30%;
+        height: 39vw;
+        border: 1px solid #000;
+        border-radius: .2em;
+        margin: 1em;
+        background-color: rgb(247, 246, 245);
+        padding: 1em;
+        button{
+            width: 100%;
+            border: 1px solid rgba(136, 134, 134, 0.637);
+            border-radius: 2px;
+        }
+        button:hover{
+            background-color: rgba(199, 198, 198, 0.637);
+        }
+    }
+}
+.dashBody__content{
+    flex: 70%;
+    // background-color: black;
+    display: flex;
+
+    .flexabout{
+        flex: 23%;
+    }
+    .about{
+        flex: 77%;
+    }
+    
+}

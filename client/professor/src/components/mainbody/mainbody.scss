@@ -43,3 +43,12 @@ table {
   tr:nth-child(even) {
     background-color: #dddddd;
   }
+
+button{
+    border-radius: .3em;
+    border: none;
+    width: 100%;
+}
+button:hover{
+    background-color: #98999e;
+}

@@ -66,13 +66,13 @@ import {
                 </li>
   
                 <li className="nav-link">
-                  <Link to="/patients">
+                  <Link to="/assignments">
                     <AssignmentIcon className="sidebar-icon" />
                     <span className="text nav-text">Assignments</span>
                   </Link>
                 </li>
                 <li className="nav-link">
-                  <Link to="/workers">
+                  <Link to="/classTest">
                     <AssessmentIcon className="sidebar-icon" />
                     <span className="text nav-text">Class-test</span>
                   </Link>
