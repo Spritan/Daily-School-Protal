@@ -20,7 +20,7 @@ const TestCards = () => {
         <h5>Time Remaining: <span className='User lastDate' >00:01:05</span></h5>
         <br />
         <button> Questions</button>
-        <button> Submit</button>
+        {/* <button> Submit</button> */}
       </div>
     </div>
   )

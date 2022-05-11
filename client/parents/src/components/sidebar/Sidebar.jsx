@@ -55,12 +55,12 @@ import {
                     <span className="text nav-text">Dashboard</span>
                   </Link>
                 </li>
-                <li className="nav-link">
+                {/* <li className="nav-link">
                   <Link to="/profile">
                     <AccountCircleIcon className="sidebar-icon" />
                     <span className="text nav-text">My Profile</span>
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-link">
                   <Link to="/attendence">
                     <PlaylistAddCheckIcon className="sidebar-icon" />
@@ -103,7 +103,7 @@ import {
             <div className="bottom-content">
               <li className="">
               <button className="btn_out" onClick={()=> {
-                  localStorage.removeItem('student')
+                  localStorage.removeItem('parent')
                   navigate('/login')
                   }}>
                   <LogoutOutlined className="sidebar-icon" />

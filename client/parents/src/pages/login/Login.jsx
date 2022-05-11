@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import studentContext from "../../context/student/studentContext";
+import parentContext from "../../context/parent/parentContext";
+// import studentContext from "../../context/student/studentContext";
 import "./login.scss";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const { studentLogin } = useContext(studentContext);
+  const { studentLogin: parentLogin } = useContext(parentContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,11 +15,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const loginStudent = async () => {
-      const res = await studentLogin(email, password);
+      const res = await parentLogin(email, password);
       if (res === "error") {
         navigate("/error");
       }
-      localStorage.setItem('student', JSON.stringify(res.data.otherInfo))
+      localStorage.setItem('parent', JSON.stringify(res.data.otherInfo))
       navigate('/')
     };
     loginStudent();
