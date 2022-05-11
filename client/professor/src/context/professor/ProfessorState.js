@@ -30,9 +30,33 @@ const ProfessorState = (props) => {
         }
     }
 
+    //  Get a professor
+
+    const findProfessor = async (professorId) => {
+        try {
+            const res = axios.get(`${host}/professor/find/${professorId}`)
+            return res
+        } catch (error) {
+            return 'error'
+        }
+    }
+
+    //  Update a Professor
+
+    const updateProfessorNotice = async (professorId, notices) => {
+        try {
+            const res = axios.put(`${host}/professor/update/${professorId}`, {notices})
+            return res
+        } catch (error) {
+            return 'error'
+        }
+    } 
+
+
+
 
     return(
-    <professorContext.Provider value={{  loginProfessor, fetchAllProfessor }}>
+    <professorContext.Provider value={{  loginProfessor, fetchAllProfessor, updateProfessorNotice, findProfessor }}>
         {props.children}
     </professorContext.Provider>
     )

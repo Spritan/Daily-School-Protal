@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Professor = require("../models/Professor");
-const verifyToken = require("../verifyToken");
 const CryptoJs = require("crypto-js");
 
 // ---------------------Login Professor ------------------------
@@ -37,7 +36,7 @@ router.post("/login", async (req, res) => {
 
 // ------------------------Update Professor ----------------------
 
-router.put("/update/:professorId", verifyToken, async (req, res) => {
+router.put("/update/:professorId", async (req, res) => {
   try {
     if (req.body.password) {
       const encryptedPassword = CryptoJs.AES.encrypt(
@@ -48,18 +47,19 @@ router.put("/update/:professorId", verifyToken, async (req, res) => {
     }
     await Professor.findByIdAndUpdate(
       req.params.professorId,
-      { set: req.body },
+      { $set: req.body },
       { new: true }
     );
-    res.status(200).json("Updated Information");
+    res.status(200).json("Updated information successfully!!");
   } catch (error) {
+    // We will come to the error page later
     res.status(500).json(error);
   }
 });
 
 // ------------------------Find a Professor ----------------------
 
-router.get("/find/:professorId", verifyToken, async (req, res) => {
+router.get("/find/:professorId", async (req, res) => {
   try {
     const reqProfessor = await Professor.findById(req.params.professorId);
     const { password, ...otherInfo } = reqProfessor._doc;
@@ -74,17 +74,15 @@ router.get("/find/:professorId", verifyToken, async (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const allProfessors = await Professor.find();
-    const reqDataAllProfessor = []
-    allProfessors.map(prof => {
-      const {password, ...otherInfo} = prof._doc
-      reqDataAllProfessor.push(otherInfo)
-    })
-    res.status(200).json(reqDataAllProfessor)
+    const reqDataAllProfessor = [];
+    allProfessors.map((prof) => {
+      const { password, ...otherInfo } = prof._doc;
+      reqDataAllProfessor.push(otherInfo);
+    });
+    res.status(200).json(reqDataAllProfessor);
   } catch (error) {
     res.status(500).json(error);
   }
-})
-
-router.get("");
+});
 
 module.exports = router;

@@ -1,4 +1,5 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Notice from "../../components/notice/Notice";
 
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -6,14 +7,22 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.scss";
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  const [reqProfessor, serReqProfessor] = useState([])
+
+    useEffect(() => {
+        serReqProfessor(JSON.parse(localStorage.getItem('professor')))
+    }, [])
+
   return (
     <>
       <Sidebar />
       <div className="topbar">
         <h1>Daily Student Portal</h1>
-        <span className='StudentName'>Proyash Paban Sarma Borah</span>
+        <span className='StudentName'>Welcome {reqProfessor.name}</span>
         <br />
-        <span className="CourseSemBranch">B.Tech. 4th Semester - ETE</span>
+        {/* <span className="CourseSemBranch">B.Tech. 4th Semester - ETE</span> */}
       </div>
       <div className="dashBody">
         <div className="dashBody__content">
@@ -36,7 +45,9 @@ const Home = () => {
         </div>
         <div className="notices">
             <h1>Notices</h1>
-            <button>Publish a Notice +</button>
+            {
+              (reqProfessor.isHOD || reqProfessor.isHOI!==null)  && <button onClick={()=> navigate(`/newNotice/${reqProfessor._id}`)}>Publish a Notice +</button>
+            }
             <Notice />
         </div>
       </div>

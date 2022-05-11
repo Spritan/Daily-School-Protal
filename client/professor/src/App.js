@@ -22,7 +22,7 @@ function App() {
         <Route path="/assignments" element={<Assignments />} />
         <Route path="/classTest" element={<ClassTest />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/newNotice" element={<NewNotice />} />
+        <Route path="/newNotice/:professorId" element={<NewNotice />} />
         <Route path="/newTest" element={<NewTest />} />
         <Route path="/newAssignment" element={<NewAssignment />} />
       </Routes>

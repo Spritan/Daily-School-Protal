@@ -4,7 +4,7 @@ import studentContext from "../../context/student/studentContext";
 import "./mainbody.scss";
 
 const Mainbody = () => {
-  const { getStudentOfClass } = useContext(studentContext);
+  const { getStudentOfClass, updateStudent } = useContext(studentContext);
 
   const [reqProfessor, serReqProfessor] = useState([]);
 
@@ -44,12 +44,15 @@ const Mainbody = () => {
     setAllSubjects([...new Set(subjects)]);
     setallSemesters([...new Set(semesters)]);
   }, [reqProfessor]);
-  
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const res = await getStudentOfClass(courseName, deptName, semester);
     setClassOfStudent(res.data);
+  };
+
+  const handlePresent = async (id) => {
+    let status = {date: date, status: present}
   };
 
   return (
@@ -176,17 +179,16 @@ const Mainbody = () => {
 
               {classOfStudent.map((student) => {
                 return (
-                  <tr>
+                  <tr key={student._id}>
                     <td>{student.name}</td>
                     <td>{student.rollNo}</td>
                     <td className="btnSection">
-                      <button >Present</button>
-                      <button>Absent</button>
+                      <button style={{ cursor: "pointer" }}>Present</button>
+                      <button style={{ cursor: "pointer" }}>Absent</button>
                     </td>
                   </tr>
                 );
               })}
-
             </table>
 
             {/* <button> Submit </button> */}

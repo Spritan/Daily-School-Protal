@@ -20,8 +20,22 @@ const StudentState = (props) => {
     }
   };
 
+  //  Update a student
+  const updateStudent = async (studentId, attendence) => {
+    try {
+      const res = await axios.put(`${host}/student/update/${studentId}`, {
+        attendence,
+      });
+      return res;
+    } catch (error) {
+      return "error";
+    }
+  };
+
+
+  
   return (
-    <studentContext.Provider value={{ getStudentOfClass }}>
+    <studentContext.Provider value={{ getStudentOfClass, updateStudent }}>
       {props.children}
     </studentContext.Provider>
   );
