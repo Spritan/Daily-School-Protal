@@ -1,12 +1,18 @@
 .topbar {
-	position: sticky;
-	top: 0;
-	left: 0;
-	height: 8em;
-	width: 100%;
-	padding: 10px 14px;
-    padding-left: 300px;
-	background: rgb(218, 216, 216);
-	transition: var(--tran-05);
-	// z-index: 90;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 8em;
+  width: 100%;
+  padding: 10px 14px;
+  padding-left: 30%;
+  background: rgb(218, 216, 216);
+  transition: var(--tran-05);
+  // z-index: 90;
+}
+
+@media (max-width: 684px) {
+  .topbar {
+    font-size: 14px;
+  }
 }

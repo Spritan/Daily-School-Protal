@@ -22,8 +22,9 @@ const Home = () => {
           </div>
           <div className="about">
             <br />
-            <h1>About GIMPT</h1>
+            <h1>About GIMT</h1>
             <br />
+            <img className="gimtLogo" src="https://www.meghalayaportal.com/wp-content/uploads/2019/11/GIMT-Guwahati-Recruitent.png" alt="" />
             <br />
             <q>A commitment towards academic excellence</q>
             <br />
