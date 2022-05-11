@@ -1,0 +1,70 @@
+.peerLearning{
+    height: 100vh;
+    max-width: calc(100vw - 88px);
+    margin-left: auto; 
+    margin-right: 0;
+    display: flex;
+}
+
+.chatMenu{
+    flex: 20%;
+    .chatMenuWrapper{
+        padding: 10px;
+        background-color: rgb(245, 253, 247);
+        height: 100%;
+        border: 1px solid rgba(209, 221, 209, 0.644);
+        // border-radius: 10px;
+        .chatMenuInput{
+            width: 100%;
+            padding: 0.7em 1em;
+            border: 1px solid rgb(209, 221, 209);
+            border-radius: 20px;
+        }
+    }
+}
+.chatBox{
+    flex: 65%;
+    .chatBoxWrapper{
+        padding: 10px;
+        // background-color: rgb(245, 253, 247);
+        height: 100%;
+        border: 1px solid rgba(209, 221, 209, 0.644);
+        // border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .chatBoxTop{
+            height: 100%;
+            overflow-y: scroll;
+            padding-right: 10px;
+        }
+        .chatBoxBottom{
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .chatMessageInput{
+                width: 80%;
+                height: 90px;
+                padding: 10px;
+            }
+            .chatSubmitButton{
+                width: 70px;
+                height: 40px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.chatOnline{
+    flex: 25%;
+   .chatOnlineWrapper{
+        padding: 10px;
+        background-color: rgb(245, 253, 247);
+        height: 100%;
+        border: 1px solid rgba(209, 221, 209, 0.644);
+    // border-radius: 10px;
+    }
+}

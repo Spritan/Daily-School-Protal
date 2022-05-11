@@ -16,6 +16,7 @@ import {
   import AssignmentIcon from '@mui/icons-material/Assignment';
   import AssessmentIcon from '@mui/icons-material/Assessment';
   import SchoolIcon from '@mui/icons-material/School';
+  import AccountCircleIcon from '@mui/icons-material/AccountCircle';
   
   const Sidebar = () => {
     // All useStates
@@ -55,7 +56,7 @@ import {
                 </li>
                 <li className="nav-link">
                   <Link to="/profile">
-                    <PlaylistAddCheckIcon className="sidebar-icon" />
+                    <AccountCircleIcon className="sidebar-icon" />
                     <span className="text nav-text">My Profile</span>
                   </Link>
                 </li>

@@ -1,0 +1,26 @@
+.container{
+    width: calc(100vw - 88px);
+    // height: calc(100vh - 8em);
+    margin-left: auto;
+    margin-right: 0;
+    // Margin-top: auto;
+    // margin-bottom: 0;
+    display: flex;
+    // align-items: center;
+    // justify-content: space-around;
+    .flex{
+        flex: 25%;
+    }
+    .container2{
+        flex: 50%;
+        width: calc(100vw - 88px);
+        display: flex;
+        // background-color: #000;
+        // margin-bottom: 10em;
+        .flexcol{
+            flex: 50%;
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+    }
+}

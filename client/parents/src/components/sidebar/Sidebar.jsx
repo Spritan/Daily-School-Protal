@@ -1,5 +1,4 @@
 import {
-  CalendarMonth,
     ChevronRightOutlined,
     // PlaylistAddCheckIcon,
     DashboardOutlined,
@@ -9,7 +8,9 @@ import {
     MedicationOutlined,
     PersonOutlineOutlined,
     StoreOutlined
+    // AccountCircleIcon
   } from "@mui/icons-material";
+  import AccountCircleIcon from '@mui/icons-material/AccountCircle';
   import { useState } from "react";
   import { Link, useNavigate } from "react-router-dom";
   import "./sidebar.scss";
@@ -17,7 +18,6 @@ import {
   import AssignmentIcon from '@mui/icons-material/Assignment';
   import AssessmentIcon from '@mui/icons-material/Assessment';
   import SchoolIcon from '@mui/icons-material/School';
-  import AccountCircleIcon from '@mui/icons-material/AccountCircle';
   
   const Sidebar = () => {
     // All useStates
@@ -63,7 +63,7 @@ import {
                 </li>
                 <li className="nav-link">
                   <Link to="/attendence">
-                    <CalendarMonth className="sidebar-icon" />
+                    <PlaylistAddCheckIcon className="sidebar-icon" />
                     <span className="text nav-text">Attendence</span>
                   </Link>
                 </li>
@@ -102,9 +102,8 @@ import {
             </div>
             <div className="bottom-content">
               <li className="">
-                {/* <Link to="/"> */}
-                <button className="btn_out" onClick={()=> {
-                  localStorage.removeItem('professor')
+              <button className="btn_out" onClick={()=> {
+                  localStorage.removeItem('student')
                   navigate('/login')
                   }}>
                   <LogoutOutlined className="sidebar-icon" />
