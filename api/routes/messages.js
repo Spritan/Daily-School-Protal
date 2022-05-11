@@ -14,9 +14,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Get all Professor
+
+router.get('/all', async (req, res) => {
+  try {
+    const allMessage = await Message.find()
+    res.status(200).json(allMessage)
+  } catch (error) {
+    res.status(500).json(err);
+  }
+})
+
 //get
 
-router.get("/:conversationId", async (req, res) => {
+router.get("/get/:conversationId", async (req, res) => {
   try {
     const messages = await Message.find({
       conversationId: req.params.conversationId,

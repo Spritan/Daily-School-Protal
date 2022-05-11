@@ -6,46 +6,28 @@ import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
 import studentContext from "../../context/student/studentContext";
 import conversationContext from "../../context/conversation/conversationContext";
+import ChatBox from "../../components/chatBox/ChatBox";
 // import { io } from "socket.io-client";
 
 export default function PeerLearning() {
+  const { allConversations } = useContext(conversationContext);
 
-  // const { getStudentOfClass } = useContext(studentContext);
-  // const { newConversation, allConversations } = useContext(conversationContext)
+  const [reqConversation, setReqConversation] = useState([]);
+  const [reqProfessor, serReqProfessor] = useState([]);
+  const [conversationId, setConversationId] = useState(null)
 
-  // const [reqProfessor, serReqProfessor] = useState([]);
-  // const [convesations, setConvesations] = useState([]);
-  // // const [first, setfirst] = useState(second)
+  useEffect(() => {
+    serReqProfessor(JSON.parse(localStorage.getItem("professor")));
+  }, []);
 
-  // useEffect(() => {
-  //   serReqProfessor(JSON.parse(localStorage.getItem("professor")));
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchAllConversations = async () => {
-  //     const res = await allConversations()
-  //     setConvesations(res.data)
-  //   }
-  //   fetchAllConversations()
-  // }, []);
-
-  // const createConversation = async (members, classDetails, teacherId) => {
-  //   const res = await newConversation(members, classDetails, teacherId)
-  // }
-
-  // useEffect(() => {
-  //   convesations.filter(conversation => conversation.teacherId === reqProfessor._id)
-  //   if(!convesations || convesations.length===0){
-  //     reqProfessor.map(prof => {
-  //       // prof.class 
-  //     })
-  //   }
-  // }, [convesations]);
-
-  // useEffect(() => {
-  //   // reqProfessor.class && reqProfessor.class.map(c => {
-  //   // })
-  // }, []);
+  useEffect(() => {
+    const fetchReqConversation = async () => {
+      const res = await allConversations();
+      res.data.filter((convo) => convo.teacherId === reqProfessor._id);
+      setReqConversation(res.data);
+    };
+    fetchReqConversation();
+  }, []);
 
   return (
     <>
@@ -54,44 +36,16 @@ export default function PeerLearning() {
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="Search" className="chatMenuInput" />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
+            {reqConversation.map((convo) => {
+              return <Conversation teacherId={convo.teacherId} onClick={() => {
+                setConversationId(convo._id)
+              }} />;
+            })}
           </div>
         </div>
-        <div className="chatBox">
-          <div className="chatBoxWrapper">
-            {
-              <div className="chatBoxTop">
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message own={true} />
-                <Message />
-                <Message />
-              </div>
-            }
-            <div className="chatBoxBottom">
-              <textarea
-                className="chatMessageInput"
-                placeholder="Write Something .."
-              ></textarea>
-              <button className="chatSubmitButton">Send</button>
-            </div>
-          </div>
-        </div>
+      {  
+       <ChatBox conversationId={conversationId} />
+      }
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline />
