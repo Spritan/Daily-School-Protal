@@ -1,4 +1,5 @@
 import {
+  CalendarMonth,
     ChevronRightOutlined,
     // PlaylistAddCheckIcon,
     DashboardOutlined,
@@ -61,7 +62,7 @@ import {
                 </li>
                 <li className="nav-link">
                   <Link to="/attendence">
-                    <PlaylistAddCheckIcon className="sidebar-icon" />
+                    <CalendarMonth className="sidebar-icon" />
                     <span className="text nav-text">Attendence</span>
                   </Link>
                 </li>

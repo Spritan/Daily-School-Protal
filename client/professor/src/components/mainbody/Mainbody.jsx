@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import studentContext from "../../context/student/studentContext";
-
 import "./mainbody.scss";
 
 const Mainbody = () => {
-  const { getStudentOfClass, updateStudent } = useContext(studentContext);
+  const { getStudentOfClass, updateStudent, getStudent } = useContext(studentContext);
 
   const [reqProfessor, serReqProfessor] = useState([]);
 
@@ -52,7 +51,16 @@ const Mainbody = () => {
   };
 
   const handlePresent = async (id) => {
-    let status = {date: date, status: present}
+    let classAttendence = {date: date, status: 'present' , subject: subject}
+    const res = await getStudent(id)
+    let attendence = res.data.attendence
+    attendence.push(classAttendence)
+    console.log(attendence)
+  };
+
+
+  const handleAbsent = async (id) => {
+    let status = {date: date, status: 'absent' , subject: subject}
   };
 
   return (
@@ -183,7 +191,7 @@ const Mainbody = () => {
                     <td>{student.name}</td>
                     <td>{student.rollNo}</td>
                     <td className="btnSection">
-                      <button style={{ cursor: "pointer" }}>Present</button>
+                      <button style={{ cursor: "pointer" }} onClick={() => handlePresent(student._id)} >Present</button>
                       <button style={{ cursor: "pointer" }}>Absent</button>
                     </td>
                   </tr>

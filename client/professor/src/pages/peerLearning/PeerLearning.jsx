@@ -1,39 +1,51 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./peerLearning.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Conversation from "../../components/conversation/Conversation";
 import Message from "../../components/message/Message";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
-import { io } from "socket.io-client";
+import studentContext from "../../context/student/studentContext";
+import conversationContext from "../../context/conversation/conversationContext";
+// import { io } from "socket.io-client";
 
 export default function PeerLearning() {
-  const scrollRef = useRef()
 
-  const [currentChat, setCurrentChat] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [arrivalMessage, setArrivalMessage] = useState(null);
-  const socket = useRef();
+  // const { getStudentOfClass } = useContext(studentContext);
+  // const { newConversation, allConversations } = useContext(conversationContext)
 
-  useEffect(() => {
-    socket.current = io("ws://localhost:8900");
-    socket.current.on("getMessage", (data) => {
-      setArrivalMessage({
-        sender: data.senderId,
-        text: data.text,
-        createdAt: Date.now(),
-      });
-    });
-  }, []);
+  // const [reqProfessor, serReqProfessor] = useState([]);
+  // const [convesations, setConvesations] = useState([]);
+  // // const [first, setfirst] = useState(second)
 
-  useEffect(() => {
-    arrivalMessage &&
-      currentChat?.members.includes(arrivalMessage.sender) &&
-      setMessages((prev) => [...prev, arrivalMessage]);
-  }, [arrivalMessage, currentChat]);
+  // useEffect(() => {
+  //   serReqProfessor(JSON.parse(localStorage.getItem("professor")));
+  // }, []);
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  // useEffect(() => {
+  //   const fetchAllConversations = async () => {
+  //     const res = await allConversations()
+  //     setConvesations(res.data)
+  //   }
+  //   fetchAllConversations()
+  // }, []);
+
+  // const createConversation = async (members, classDetails, teacherId) => {
+  //   const res = await newConversation(members, classDetails, teacherId)
+  // }
+
+  // useEffect(() => {
+  //   convesations.filter(conversation => conversation.teacherId === reqProfessor._id)
+  //   if(!convesations || convesations.length===0){
+  //     reqProfessor.map(prof => {
+  //       // prof.class 
+  //     })
+  //   }
+  // }, [convesations]);
+
+  // useEffect(() => {
+  //   // reqProfessor.class && reqProfessor.class.map(c => {
+  //   // })
+  // }, []);
 
   return (
     <>
@@ -54,7 +66,7 @@ export default function PeerLearning() {
         <div className="chatBox">
           <div className="chatBoxWrapper">
             {
-              <div className="chatBoxTop" ref={scrollRef}>
+              <div className="chatBoxTop">
                 <Message />
                 <Message own={true} />
                 <Message />

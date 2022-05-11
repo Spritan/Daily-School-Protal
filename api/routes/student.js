@@ -72,4 +72,16 @@ router.put("/update/:studentId", async (req, res) => {
   }
 });
 
+// -------------------Find a student -------------------------
+router.get('/find/:studentId', async (req, res) => {
+  try {
+    const reqStudent = await Student.findById(req.params.studentId)
+    res.status(200).json(reqStudent)
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
+
+
+
 module.exports = router;

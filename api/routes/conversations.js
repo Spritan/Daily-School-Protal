@@ -16,12 +16,23 @@ router.post('/', async (req, res) => {
 
 //  Get Conversation
 
-router.get('/:userId', async(req, res) => {
+router.get('/find/:userId', async(req, res) => {
     try {
         const conversation = await Conversation.find({
             members: { $in : [req.params.userId]}
         })
         res.status(200).json(conversation)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
+
+//  Get All Conversations 
+
+router.get('/all', async (req, res) => {
+    try {
+        const allConversations = await Conversation.find()
+        res.status(200).json(allConversations)
     } catch (error) {
         res.status(500).json(error)
     }

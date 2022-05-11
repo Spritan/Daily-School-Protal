@@ -32,10 +32,18 @@ const StudentState = (props) => {
     }
   };
 
+  // Find a student
+  const getStudent = async (studentId) => {
+    try {
+      const res = await axios.get(`${host}/student/find/${studentId}`)
+      return res
+    } catch (error) {
+      return "error";
+    }
+  };
 
-  
   return (
-    <studentContext.Provider value={{ getStudentOfClass, updateStudent }}>
+    <studentContext.Provider value={{ getStudentOfClass, updateStudent, getStudent }}>
       {props.children}
     </studentContext.Provider>
   );

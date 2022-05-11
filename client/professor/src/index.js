@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import ConversationState from "./context/conversation/ConversationState";
 import ProfessorState from "./context/professor/ProfessorState";
 import StudentState from "./context/student/StudentState";
 
@@ -9,7 +10,9 @@ root.render(
   <React.StrictMode>
     <ProfessorState>
       <StudentState>
-        <App />
+        <ConversationState>
+          <App />
+        </ConversationState>
       </StudentState>
     </ProfessorState>
   </React.StrictMode>
