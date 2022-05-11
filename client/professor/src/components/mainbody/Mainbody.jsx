@@ -1,40 +1,171 @@
-import * as React from 'react';
+import { useContext, useEffect, useState } from "react";
+import studentContext from "../../context/student/studentContext";
 
 import "./mainbody.scss";
 
 const Mainbody = () => {
+  const { getStudentOfClass } = useContext(studentContext);
+
+  const [reqProfessor, serReqProfessor] = useState([]);
+
+  const [classOfStudent, setClassOfStudent] = useState([])
+
+  const [allCourses, setAllCourses] = useState([]);
+  const [allDepts, setAllDepts] = useState([]);
+  const [allSubjects, setAllSubjects] = useState([]);
+  const [allSemesters, setallSemesters] = useState([]);
+
+  const [date, setDate] = useState("");
+  const [courseName, setCourseName] = useState("");
+  const [deptName, setDeptName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [semester, setSemester] = useState();
+
+  useEffect(() => {
+    serReqProfessor(JSON.parse(localStorage.getItem("professor")));
+  }, []);
+
+  useEffect(() => {
+    let courses = [];
+    let departments = [];
+    let subjects = [];
+    let semesters = [];
+
+    reqProfessor.length !== 0 &&
+      reqProfessor.class.map((c) => {
+        courses.push(c.courseName);
+        departments.push(c.deptName);
+        subjects.push(...c.subjects);
+        semesters.push(c.semester);
+      });
+
+    setAllCourses([...new Set(courses)]);
+    setAllDepts([...new Set(departments)]);
+    setAllSubjects([...new Set(subjects)]);
+    setallSemesters([...new Set(semesters)]);
+  }, [reqProfessor]);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const res = await getStudentOfClass("B.Tech", "ETE", 4);
+    setClassOfStudent(res.data)
+  };
 
   return (
     <>
       <div className="main">
-        <div className='flex1'></div>
+        <div className="flex1"></div>
         <div className="mainbody">
           <h1>Attendance Report</h1>
-          <div className='formsSection'>
-            <div>Date: &ensp;
-              <input type="date" name="" id="" /></div>
-            <div><label for="Course">Course:</label>
-              &ensp;
-              <select name="Course" id="Course">
-                <option value="B.Tech">B.Tech</option>
-                <option value="B.Ca">B.Ca</option>
-                <option value="M.Ca">M.Ca</option>
-                {/* <option value="audi">Audi</option> */}
-              </select></div>
+          <form className="formsSection" onSubmit={handleSearch}>
             <div>
-              <label for="Semester">Semester:</label>
+              Date: &ensp;
+              <input type="date" onChange={(e) => setDate(e.target.value)} />
+            </div>
+
+            <div>
+              <label htmlFor="Course">Course:</label>
               &ensp;
-              <select name="Semester" id="Semester">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+              <select
+                name="Course"
+                id="Course"
+                onChange={(e) =>
+                  e.target.value !== "" && setCourseName(e.target.value)
+                }
+              >
+                <option value="">Select Cource</option>
+                {/* <option value="">B.Tech</option> */}
+                {allCourses.length !== 0 &&
+                  allCourses.map((d) => {
+                    return (
+                      <option key={d} value={d}>
+                        {d}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="departments">Departments:</label>
+              &ensp;
+              <select
+                id="departments"
+                onChange={(e) =>
+                  e.target.value !== "" && setDeptName(e.target.value)
+                }
+              >
+                <option value=""> Select Department </option>
+                {/* <option value="">B.Tech</option> */}
+                {allDepts.length !== 0 &&
+                  allDepts.map((c) => {
+                    return (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="subjects">Subjects:</label>
+              &ensp;
+              <select
+                id="subjects"
+                onChange={(e) =>
+                  e.target.value !== "" && setSubject(e.target.value)
+                }
+              >
+                <option value="">Select Subject</option>
+                {allSubjects.length !== 0 &&
+                  allSubjects.map((c) => {
+                    return (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    );
+                  })}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="Semester">Semester:</label>
+              &ensp;
+              <select
+                name="Semester"
+                id="Semester"
+                onChange={(e) =>
+                  e.target.value !== "" && setSemester(e.target.value)
+                }
+              >
+                <option value="">Select Semester</option>
+                {allSemesters.length !== 0 &&
+                  allSemesters.map((s) => {
+                    return (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    );
+                  })}
+
                 {/* <option value="audi">Audi</option> */}
               </select>
             </div>
 
-          </div>
+            <button
+              style={{
+                width: "80px",
+                backgroundColor: "lightblue",
+                cursor: "pointer",
+              }}
+            >
+              {" "}
+              Search
+            </button>
+          </form>
           <br />
-          <div className='formTable'>
+          <div className="formTable">
             <table>
               <tr>
                 <th>Name</th>
@@ -44,43 +175,54 @@ const Mainbody = () => {
               <tr>
                 <td>Alfreds Futterkiste</td>
                 <td>Maria Anders</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
               <tr>
                 <td>Centro comercial Moctezuma</td>
                 <td>Francisco Chang</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
               <tr>
                 <td>Ernst Handel</td>
                 <td>Roland Mendel</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
               <tr>
                 <td>Island Trading</td>
                 <td>Helen Bennett</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
               <tr>
                 <td>Laughing Bacchus Winecellars</td>
                 <td>Yoshi Tannamuri</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
               <tr>
                 <td>Magazzini Alimentari Riuniti</td>
                 <td>Giovanni Rovelli</td>
-                <td><input type="checkbox" id='switch' /></td>
+                <td>
+                  <input type="checkbox" id="switch" />
+                </td>
               </tr>
             </table>
 
             <button> Submit </button>
-
           </div>
         </div>
-        <div className='flex3'></div>
+        <div className="flex3"></div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Mainbody
+export default Mainbody;

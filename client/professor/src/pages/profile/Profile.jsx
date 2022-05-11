@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 // import ProfileBody from "../../components/profileBody/ProfileBody";
 import "./profile.scss";
 
 const Profile = () => {
+
+    const [reqProfessor, serReqProfessor] = useState([])
+
+    useEffect(() => {
+        serReqProfessor(JSON.parse(localStorage.getItem('professor')))
+    }, [])
+    
+
     return (
         <>
             <Sidebar />
@@ -13,13 +22,13 @@ const Profile = () => {
                         <div className="profileCol1">
                             <img 
                             className="UserImg"
-                            src="https://th.bing.com/th/id/OIP.p-tCU_opnL7Co30gF4n9EwHaFq?pid=ImgDet&rs=1" 
+                            src={reqProfessor.profilePic ? reqProfessor.profilePic : ""} 
                             alt="" />
                         </div>
                         <div className="profileCol2">
                             <h1>Details</h1>
-                            <p className="Tags">Name: <span className="User Name" >Proyash Paban Sarma Borah</span></p>
-                            <p className="Tags">Roll No.: <span className="User rollNo" >123</span></p>
+                            <p className="Tags">Name: <span className="User Name" >{reqProfessor.name}</span></p>
+                            <p className="Tags">Email: <span className="User rollNo" >{reqProfessor.email}</span></p>
                             <p className="Tags">Course: <span className="User course" >123</span></p>
                             <p className="Tags">Depatment: <span className="User Department" >Electronics and Telecommunication Engineering</span></p>
                         </div>

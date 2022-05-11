@@ -2,37 +2,50 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const Student = require("../models/Student");
-const CryptoJS = require('crypto-js')
+const CryptoJs = require('crypto-js')
 
 // ---------------------Login Student ------------------------
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-    const student = Student.findOne({ email: req.body.username });
-    !user && res.status(401).json("Wrong credentials!");
+    const reqStudent = await Student.findOne({ email: req.body.email });
+    !reqStudent && res.status(404).json("Wrong credentials!");
 
-    const hashedPassword = CryptoJS.AES.decrypt(
-      user.password,
-      process.env.PASS_SEC
-    );
-    const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-
-    OriginalPassword !== req.body.password &&
-      res.status(401).json("Wrong credentials!");
-
-    const accessToken = jwt.sign({ id: student._id }, process.env.JWT_SEC, {
-      expiresIn: "3d",
-    });
-
-    const { password, ...others } = user._doc;
-
-    res.status(200).json({ others, accessToken });
+    if(
+      req.body.password ===
+      CryptoJs.AES.decrypt(
+        reqStudent.password,
+        process.env.SECRETE_MESSAGE
+    ).toString(CryptoJs.enc.Utf8)
+    ){
+      const jwt_data = {
+        id: reqStudent._id,
+      };
+      const studentAuthToken = jwt.sign(jwt_data, process.env.JWT_SECRET, {
+        expiresIn: "7d",
+      });
+      const { password, ...otherInfo } = reqStudent._doc;
+      res.status(200).json({ otherInfo, studentAuthToken });
+    }
+    else{
+      res.status(404).json("Wrong credentials!");
+    }
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// ---------------------Update Student ------------------------
+// ---------------------Find all Students from a class------------------------
+
+router.post('/class', async (req, res) => {
+  try {
+    // {courseName: req.body.courseName, deptName: req.body.deptName, semester: req.body.semester}
+    const reqStudents = await Student.find({courseName : req.body.courseName, deptName: req.body.deptName, semester: 4})
+    res.status(200).json(reqStudents)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
 
 
 module.exports = router;
