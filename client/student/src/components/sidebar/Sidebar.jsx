@@ -10,16 +10,18 @@ import {
     StoreOutlined
   } from "@mui/icons-material";
   import { useState } from "react";
-  import { Link } from "react-router-dom";
+  import { Link, useNavigate } from "react-router-dom";
   import "./sidebar.scss";
   import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
   import AssignmentIcon from '@mui/icons-material/Assignment';
   import AssessmentIcon from '@mui/icons-material/Assessment';
   import SchoolIcon from '@mui/icons-material/School';
+  import AccountCircleIcon from '@mui/icons-material/AccountCircle';
   
   const Sidebar = () => {
     // All useStates
     const [isToggled, setisToggled] = useState(false);
+    const navigate = useNavigate();
   
   
     // For toggling button
@@ -54,7 +56,7 @@ import {
                 </li>
                 <li className="nav-link">
                   <Link to="/profile">
-                    <PlaylistAddCheckIcon className="sidebar-icon" />
+                    <AccountCircleIcon className="sidebar-icon" />
                     <span className="text nav-text">My Profile</span>
                   </Link>
                 </li>
@@ -99,10 +101,14 @@ import {
             </div>
             <div className="bottom-content">
               <li className="">
-                <Link to="/">
+              <button className="btn_out" onClick={()=> {
+                  localStorage.removeItem('student')
+                  navigate('/login')
+                  }}>
                   <LogoutOutlined className="sidebar-icon" />
                   <span className="text nav-text">Logout</span>
-                </Link>
+                {/* </Link> */}
+                </button>
               </li>
   
             </div>
