@@ -8,7 +8,7 @@ const Mainbody = () => {
 
   const [reqProfessor, serReqProfessor] = useState([]);
 
-  const [classOfStudent, setClassOfStudent] = useState([])
+  const [classOfStudent, setClassOfStudent] = useState([]);
 
   const [allCourses, setAllCourses] = useState([]);
   const [allDepts, setAllDepts] = useState([]);
@@ -44,11 +44,12 @@ const Mainbody = () => {
     setAllSubjects([...new Set(subjects)]);
     setallSemesters([...new Set(semesters)]);
   }, [reqProfessor]);
+  
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const res = await getStudentOfClass("B.Tech", "ETE", 4);
-    setClassOfStudent(res.data)
+    const res = await getStudentOfClass(courseName, deptName, semester);
+    setClassOfStudent(res.data);
   };
 
   return (
@@ -172,48 +173,19 @@ const Mainbody = () => {
                 <th>Roll No.</th>
                 <th>Attendence</th>
               </tr>
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
-              <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
-              <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
-              <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
-              <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
-              <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>
-                  <input type="checkbox" id="switch" />
-                </td>
-              </tr>
+
+              {classOfStudent.map((student) => {
+                return (
+                  <tr>
+                    <td>{student.name}</td>
+                    <td>{student.rollNo}</td>
+                    <td>
+                      <input type="checkbox" id="switch" />
+                    </td>
+                  </tr>
+                );
+              })}
+
             </table>
 
             <button> Submit </button>
