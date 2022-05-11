@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={localStorage.getItem('professor')?<Home />:<Login/>} />
         <Route path="/attendence" element={<Attendence />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/peerLearning" element={<PeerLearning />} />

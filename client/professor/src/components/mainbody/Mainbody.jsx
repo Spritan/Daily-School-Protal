@@ -179,8 +179,9 @@ const Mainbody = () => {
                   <tr>
                     <td>{student.name}</td>
                     <td>{student.rollNo}</td>
-                    <td>
-                      <input type="checkbox" id="switch" />
+                    <td className="btnSection">
+                      <button >Present</button>
+                      <button>Absent</button>
                     </td>
                   </tr>
                 );
@@ -188,7 +189,7 @@ const Mainbody = () => {
 
             </table>
 
-            <button> Submit </button>
+            {/* <button> Submit </button> */}
           </div>
         </div>
         <div className="flex3"></div>

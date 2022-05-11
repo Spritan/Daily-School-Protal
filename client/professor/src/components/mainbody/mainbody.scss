@@ -38,6 +38,7 @@ table {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+    
   }
   
   tr:nth-child(even) {
@@ -51,4 +52,10 @@ button{
 }
 button:hover{
     background-color: #98999e;
+}
+.btnSection{
+    display: flex;
+    button{
+        margin: 0 1em;
+    }
 }
