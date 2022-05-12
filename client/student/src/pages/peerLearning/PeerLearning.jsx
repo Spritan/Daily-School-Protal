@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import "./peerLearning.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Conversation from "../../components/conversation/Conversation";
@@ -11,6 +11,8 @@ export default function PeerLearning() {
   const { allConversations } = useContext(conversationContext);
   const { setReqConversations: conversations } =
     useContext(conversationContext);
+
+    const scrollRef = useRef()
 
   const [reqStudent, setReqStudent] = useState([]);
   const [reqConversations, setReqConversations] = useState();
@@ -58,6 +60,10 @@ export default function PeerLearning() {
     setNewMessage(res.data);
   };
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [allMessages]);
+
   return (
     <>
       <Sidebar />
@@ -76,7 +82,11 @@ export default function PeerLearning() {
             <div className="chatBoxTop">
               {allMessages.map((message) => {
                 // console.log(message)
-                return <Message key={message._id} message={message} />;
+                return (
+                    <div ref={scrollRef}>
+                        <Message key={message._id} message={message} />;
+                    </div>
+                )
               })}
               {/* <Message />
                     <Message own={true}/>
