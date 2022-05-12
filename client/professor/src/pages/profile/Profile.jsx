@@ -7,7 +7,7 @@ const Profile = () => {
 
     const [reqProfessor, serReqProfessor] = useState([])
 
-    useEffect(() => {
+        useEffect(() => {
         serReqProfessor(JSON.parse(localStorage.getItem('professor')))
     }, [])
     

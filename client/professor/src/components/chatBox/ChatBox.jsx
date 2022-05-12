@@ -8,12 +8,10 @@ const ChatBox = ({ conversationId }) => {
     const [reqProfessor, serReqProfessor] = useState([])
 
     useEffect(() => {
-
         const getAllMessages = async () => {
             const res = await axios.get(`http://localhost:8080/api/message/get/${conversationId}`)
         }
         getAllMessages()
-      
     }, [])
     
 

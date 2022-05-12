@@ -1,23 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./assignmentCards.scss"
 
-const AssignmentCards = () => {
+const AssignmentCards = ({assignment}) => {
   return (
     <div className='AssignmentCards'>
         <div class="container3">
         <h4>
           <span className='Subject' >
-            Subject Name
+            {assignment.subject}
           </span>
           </h4>
         <hr />
         <br />
-        <h5>Topic: <span className='User topic' >Assignment</span></h5>
+        <h5> <span className='User topic' >Assignment</span></h5>
         <br />
         
-        <h5>Last date: <span className='User lastDate' >12/05/2022</span></h5>
+        <h5>Last date: <span className='User lastDate' >{assignment.date}</span></h5>
         <br />
-        <button> Questions</button>
+        <button>
+        <a href={assignment.file} style={{textDecoration: 'none'}}> Questions</a>
+        </button>
         <button> Submit</button>
       </div>
     </div>
