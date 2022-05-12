@@ -18,7 +18,7 @@ const AssignmentCards = () => {
         <h5>Last date: <span className='User lastDate' >12/05/2022</span></h5>
         <br />
         <button> Questions</button>
-        <button> Submit</button>
+        {/* <button> Submit</button> */}
       </div>
     </div>
   )
