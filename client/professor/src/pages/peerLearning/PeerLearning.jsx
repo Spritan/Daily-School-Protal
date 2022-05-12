@@ -50,6 +50,10 @@ const handleSend = async() => {
   const res = await axios.post(`http://localhost:8080/api/message`, { conversationId : conversationId, sender: reqProfessor._id, text: text, date: new Date()})
   setNewMessage(res.data)
 }
+const scrollRef=useRef()
+useEffect(()=>{
+  scrollRef.current?.scrollIntoView({ behavior: "smooth"});
+},[allMessages]);
 
   return (
     <>
@@ -73,7 +77,9 @@ const handleSend = async() => {
              allMessages.map( message => {
               // console.log(message)
               return(
-                <Message key={message._id} message={message} />
+                <div ref={scrollRef}>
+                  <Message key={message._id} message={message} />
+                </div>
               )
              })
            }
