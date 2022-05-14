@@ -1,9 +1,21 @@
-import * as React from 'react';
+import { useEffect, useState } from "react";
 import AttendenceCards from '../attendenceCards/AttendenceCards';
 
 import "./mainbody.scss";
 
 const Mainbody = () => {
+
+  const [reqStudent, setReqStudent] = useState([])
+
+  useEffect(() => {
+      setReqStudent(JSON.parse(localStorage.getItem('student')))
+  }, [])
+
+  useEffect(() => {
+    // For Chemistry
+      
+  }, [])
+  
 
   return (
     <>
@@ -11,21 +23,17 @@ const Mainbody = () => {
         <div className='flex'></div>
         <div className="container2">
           <div className="flexcol">
+
             <AttendenceCards />
             <AttendenceCards />
             <AttendenceCards />
-          </div>
-          <div className="flexcol">
-            <AttendenceCards />
-            <AttendenceCards />
-            <AttendenceCards />
+
           </div>
           
         </div>
         <div className='flex'></div>
 
       </div>
-      }
     </>
   )
 }

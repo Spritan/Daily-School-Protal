@@ -50,17 +50,17 @@ const Mainbody = () => {
     setClassOfStudent(res.data);
   };
 
-  const handlePresent = async (id) => {
+  const handlePresent = async (id, studentAttendence) => {
     let classAttendence = {date: date, status: 'present' , subject: subject}
-    const res = await getStudent(id)
-    let attendence = res.data.attendence
-    attendence.push(classAttendence)
-    console.log(attendence)
+    studentAttendence.push(classAttendence)
+    await updateStudent(id, studentAttendence)
   };
 
 
-  const handleAbsent = async (id) => {
-    let status = {date: date, status: 'absent' , subject: subject}
+  const handleAbsent = async (id, studentAttendence) => {
+    let classAttendence = {date: date, status: 'absent' , subject: subject}
+    studentAttendence.push(classAttendence)
+    await updateStudent(id, studentAttendence)
   };
 
   return (
@@ -191,8 +191,8 @@ const Mainbody = () => {
                     <td>{student.name}</td>
                     <td>{student.rollNo}</td>
                     <td className="btnSection">
-                      <button style={{ cursor: "pointer" }} onClick={() => handlePresent(student._id)} >Present</button>
-                      <button style={{ cursor: "pointer" }}>Absent</button>
+                      <button style={{ cursor: "pointer" }} onClick={() => handlePresent(student._id, student.attendence)} >Present</button>
+                      <button style={{ cursor: "pointer" }} onClick={() => handleAbsent(student._id, student.attendence)} >Absent</button>
                     </td>
                   </tr>
                 );

@@ -1,6 +1,5 @@
 import professorContext from './professorContext'
 import axios from 'axios'
-import { Password } from '@mui/icons-material'
 
 const ProfessorState = (props) => {
 
@@ -52,11 +51,22 @@ const ProfessorState = (props) => {
         }
     } 
 
+    //  Update a Professor Assignment
+
+    const updateProfessorAssignment = async (professorId, assignment) => {
+        try {
+            const res = axios.put(`${host}/professor/update/${professorId}`, {assignment})
+            return res
+        } catch (error) {
+            return 'error'
+        }
+    } 
+
 
 
 
     return(
-    <professorContext.Provider value={{  loginProfessor, fetchAllProfessor, updateProfessorNotice, findProfessor }}>
+    <professorContext.Provider value={{  loginProfessor, fetchAllProfessor, updateProfessorNotice, findProfessor, updateProfessorAssignment }}>
         {props.children}
     </professorContext.Provider>
     )

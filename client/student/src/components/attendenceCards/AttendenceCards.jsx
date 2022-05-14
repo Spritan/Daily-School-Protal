@@ -3,8 +3,8 @@ import "./attendenceCards.scss"
 
 const AttendenceCards = () => {
   return (
-    <div class="attendenceCards">
-      <div class="container3">
+    <div className="attendenceCards">
+      <div className="container3">
         <h4>
           <span className='Subject' >
             Subject Name

@@ -11,7 +11,7 @@ const Notice = () => {
   const { fetchAllProfessor } = useContext(professorContext);
 
   useEffect(() => {
-    const getAllPatient = async () => {
+    const getAllProfessor = async () => {
       const res = await fetchAllProfessor();
       if (res === "error") {
         navigate("/error");
@@ -26,7 +26,7 @@ const Notice = () => {
       });
       setAllNotices(notices)
     };
-    getAllPatient();
+    getAllProfessor();
     
   }, []);
   
