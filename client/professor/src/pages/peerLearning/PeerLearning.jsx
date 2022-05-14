@@ -43,9 +43,40 @@ export default function PeerLearning() {
             })}
           </div>
         </div>
-      {  
-       <ChatBox conversationId={conversationId} />
-      }
+        {
+          <div className="chatBox">
+            <div className="chatBoxWrapper">
+              <div className="chatBoxTop">
+                {
+
+                }
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message own={true} />
+                <Message />
+                <Message />
+              </div>
+
+              <div className="chatBoxBottom">
+                <textarea
+                  className="chatMessageInput"
+                  placeholder="Write Something .."
+                  // onChange={(e) => { setText(e.target.value) }}
+                ></textarea>
+                <button className="chatSubmitButton" >Send</button>
+              </div>
+            </div>
+          </div>
+        }
         <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline />
