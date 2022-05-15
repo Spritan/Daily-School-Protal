@@ -1,5 +1,6 @@
 # Daily-School-Protal
-*This project won 1st at AppVenture by Girijananda Chowdhury Institute of Management and Technology Guwahati*
+**This project won 1st at AppVenture by Girijananda Chowdhury Institute of Management and Technology Guwahati**
+ <br />
 A school portal cum Lerning Management System(LMS) with the following features.
 - A Dashboard,
 - An attendance tracking system,
